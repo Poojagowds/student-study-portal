@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Study Portal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6ff;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d6efd;
+        }
+
+        h3 {
+            color: #198754;
+            margin-top: 25px;
+        }
+
+        .btn-group a {
+            padding: 8px 14px;
+            margin: 5px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .note { background: #0d6efd; }
+        .activity { background: #198754; }
+        .attendance { background: #dc3545; }
+        .homework { background: #6f42c1; }
+
+        .box {
+            background: #e9f2ff;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .action {
+            margin-top: 8px;
+        }
+
+        .edit {
+            background: #ffc107;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .delete {
+            background: #dc3545;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h2>🎓 Student Study Portal</h2>
+
+    <div class="btn-group">
+        <a href="/add/" class="note">➕ Add Note</a>
+        <a href="/add-activity/" class="activity">➕ Add Activity</a>
+        <a href="/add-attendance/" class="attendance">➕ Add Attendance</a>
+        <a href="/add-homework/" class="homework">➕ Add Homework</a>
+    </div>
+
+    <!-- NOTES -->
+    <h3>📘 Notes</h3>
+    {% for n in notes %}
+        <div class="box">
+            <b>{{ n.title }}</b><br>
+            {{ n.content }}
+
+            <div class="action">
+                <a href="/edit-note/{{ n.id }}/" class="edit">✏️ Edit</a>
+                <a href="/delete-note/{{ n.id }}/" class="delete">🗑 Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No notes</p>
+    {% endfor %}
+
+    <!-- ACTIVITIES -->
+    <h3>📅 Activities</h3>
+    {% for a in activities %}
+        <div class="box">
+            {{ a.activity_name }} – {{ a.date }}
+            <div class="action">
+                <a href="/delete-activity/{{ a.id }}/" class="delete">🗑 Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No activities</p>
+    {% endfor %}
+
+    <!-- ATTENDANCE -->
+    <h3>🧾 Attendance</h3>
+    {% for att in attendance %}
+        <div class="box">{{ att.date }} – {{ att.status }}</div>
+    {% empty %}
+        <p>No attendance</p>
+    {% endfor %}
+
+    <!-- HOMEWORK -->
+    <h3>📝 Homework</h3>
+    {% for hw in homework %}
+        <div class="box">
+            <b>{{ hw.subject }}</b><br>
+            {{ hw.description }}<br>
+            Due: {{ hw.due_date }}
+
+            <div class="action">
+                <a href="/delete-homework/{{ hw.id }}/" class="delete">🗑 Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No homework</p>
+    {% endfor %}
+
+</div>
+</body>
+</html>

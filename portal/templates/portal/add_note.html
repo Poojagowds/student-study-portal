@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Note</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6ff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #dc3545;
+            text-align: center;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #198754;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📝 Add Study Note</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Note Title" required>
+        <textarea name="content" placeholder="Note Content" required></textarea>
+        <button type="submit">Save Note</button>
+    </form>
+
+    <a href="/">⬅ Back to Home</a>
+</div>
+
+</body>
+</html>

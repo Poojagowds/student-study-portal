@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Activity</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e3f2fd, #e8f5e9);
+            padding: 30px;
+        }
+
+        .card {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #198754;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #198754;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>📅 Add Daily Activity</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="activity_name" placeholder="Activity Name" required>
+        <input type="date" name="date" required>
+        <button type="submit">Save Activity</button>
+    </form>
+
+    <a href="/">⬅ Back to Home</a>
+</div>
+
+</body>
+</html>
